@@ -19,21 +19,21 @@ public class CustomFilter extends AbstractGatewayFilterFactory<CustomFilter.Conf
 
     @Override
     public GatewayFilter apply(Config config) {
-        // Costom Pre Filter
+        // Custom Pre Filter
         return (exchange, chain) -> {
             ServerHttpRequest request = exchange.getRequest();
             ServerHttpResponse response = exchange.getResponse();
 
-            log.info("Custom PRE filter: request id-> {}",request.getId());
+            log.info("Custom PRE filter: request id -> {}", request.getId());
 
             // Custom Post Filter
             return chain.filter(exchange).then(Mono.fromRunnable(() -> {
-                log.info("Custom POST filter: response code -> {}",response.getStatusCode());
+                log.info("Custom POST filter: response code -> {}", response.getStatusCode());
             }));
         };
     }
 
-    public static class Config{
-
+    public static class Config {
+        // Put the configuration properties
     }
 }
