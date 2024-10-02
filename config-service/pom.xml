@@ -5,39 +5,41 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.6</version>
+        <version>3.3.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>msa-spring-cloud</artifactId>
-    <version>1.0</version>
-    <packaging>pom</packaging>
-    <modules>
-        <module>apigateway-service</module>
-        <module>catalog-service</module>
-        <module>config-service</module>
-        <module>first-service</module>
-        <module>order-service</module>
-        <module>second-service</module>
-        <module>discoveryservice</module>
-        <module>user-service</module>
-    </modules>
-    <name>msa-spring-cloud</name>
-    <description>Demo project for Spring Boot</description>
+    <artifactId>config-service</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>config-service</name>
+    <description>config-service</description>
+    <url/>
+    <licenses>
+        <license/>
+    </licenses>
+    <developers>
+        <developer/>
+    </developers>
+    <scm>
+        <connection/>
+        <developerConnection/>
+        <tag/>
+        <url/>
+    </scm>
     <properties>
         <java.version>17</java.version>
-        <spring-cloud.version>2020.0.3</spring-cloud.version>
+        <spring-cloud.version>2023.0.3</spring-cloud.version>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-config-server</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bootstrap</artifactId>
         </dependency>
     </dependencies>
     <dependencyManagement>
@@ -51,6 +53,7 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
     <build>
         <plugins>
             <plugin>
