@@ -24,14 +24,14 @@ spring:
       default-filters:
         - name: GlobalFilter
           args:
-            baseMessage: Spring Cloud Gateway Global filter
+            baseMessage: Spring Cloud Gateway Global Filter
             preLogger: true
             postLogger: true
       routes:
-#        - id: user-service
-#          uri: lb://USER-SERVICE
-#          predicates:
-#            - Path=/user-service/**
+        #        - id: user-service
+        #          uri: lb://USER-SERVICE
+        #          predicates:
+        #            - Path=/user-service/**
         - id: user-service
           uri: lb://USER-SERVICE
           predicates:
@@ -65,18 +65,18 @@ spring:
             - RemoveRequestHeader=Cookie
             - RewritePath=/user-service/(?<segment>.*), /$\{segment}
             - AuthorizationHeaderFilter
-        - id: user-service
-          uri: lb://USER-SERVICE
-          predicates:
-            - Path=/user-service/actuator/**
-            - Method=GET,POST
-          filters:
-            - RemoveRequestHeader=Cookie
-            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
         - id: catalog-service
           uri: lb://CATALOG-SERVICE
           predicates:
             - Path=/catalog-service/**
+        - id: order-service
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/order-service/actuator/**
+            - Method=GET,POST
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/order-service/(?<segment>.*), /$\{segment}
         - id: order-service
           uri: lb://ORDER-SERVICE
           predicates:
@@ -86,22 +86,23 @@ spring:
           predicates:
             - Path=/first-service/**
           filters:
-#            - AddRequestHeader=first-request, first-request-header2
-#            - AddResponseHeader=first-response, first-response-header2
-            - CustomFilter
+            - AddRequestHeader=first-request, first-request-header2
+            - AddResponseHeader=first-response, first-response-header2
+        #            - CustomFilter
         - id: second-service
           uri: lb://MY-SECOND-SERVICE
           predicates:
             - Path=/second-service/**
           filters:
-#            - AddRequestHeader=second-request, second-request-header2
-#            - AddResponseHeader=second-response, second-response-header2
-            - name: CustomFilter
+            - AddRequestHeader=second-request, second-request-header2
+            - AddResponseHeader=second-response, second-response-header2
+            #            - name: CustomFilter
             - name: LoggingFilter
               args:
                 baseMessage: Hi, there.
                 preLogger: true
                 postLogger: true
+
 
 
 
@@ -112,4 +113,4 @@ management:
   endpoints:
     web:
       exposure:
-        include: refresh, health, beans, httptrace, busrefresh
+        include: refresh, health, beans, httptrace, busrefresh, info, metrics, prometheus
