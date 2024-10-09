@@ -11,6 +11,7 @@ spring:
   sleuth:
     sampler:
       probability: 1.0
+
   rabbitmq:
     host: 127.0.0.1
     port: 5672
