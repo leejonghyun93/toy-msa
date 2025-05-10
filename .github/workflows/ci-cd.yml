@@ -24,7 +24,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '17'
-          distribution: 'adoptium'  # 또는 'adoptium'
+          distribution: 'temurin'  # 또는 'adoptium'
 
       # 3. Maven 빌드
       - name: Build with Maven
